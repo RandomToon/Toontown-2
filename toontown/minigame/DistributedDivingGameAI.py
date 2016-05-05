@@ -6,6 +6,7 @@ from direct.fsm import State
 from direct.actor import Actor
 import DivingGameGlobals
 import random
+import random
 import types
 
 class DistributedDivingGameAI(DistributedMinigameAI):
@@ -360,7 +361,7 @@ class DistributedDivingGameAI(DistributedMinigameAI):
 
     def enterSwimming(self):
         self.notify.debug('enterSwimming')
-        duration = 150.0
+        duration = 80.0
         taskMgr.doMethodLater(duration, self.timerExpired, self.taskName('gameTimer'))
 
     def timerExpired(self, task):
