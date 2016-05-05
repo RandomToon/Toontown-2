@@ -103,3 +103,6 @@ Donald's Dreamland, Goofy Speedway, Chip and Dale's Minigolf, Minnie's Melodylan
 6. New Speedchat Phrases for Famous Quotes Section
 7. New Dance Unite
 8. Updated Values for Unites
+
+1.9.1:
+1. Fixed Bug with Treasure Dive freezing at the end of the minigame
