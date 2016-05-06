@@ -106,3 +106,8 @@ Donald's Dreamland, Goofy Speedway, Chip and Dale's Minigolf, Minnie's Melodylan
 
 1.9.1:
 1. Fixed Bug with Treasure Dive freezing at the end of the minigame
+
+1.9.2:
+1. Fixed DNA for Doctor Surlee and Doctor Dimm
+2. New Doctor Surlee and Doctor Dimm SOS Cards
+3. Changed Interior for Cog Buildings to match Disney's Toontown Online
