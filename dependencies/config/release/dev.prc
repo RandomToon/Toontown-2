@@ -19,7 +19,7 @@ vfs-mount resources/server /server
 model-path /
 
 # Server:
-server-version 1.9.2
+server-version 2.0.0
 min-access-level 700
 accountdb-type developer
 shard-low-pop 50
@@ -48,6 +48,10 @@ want-top-toons #f
 want-news-page #t 
 want-news-tab #t
 
+# Content packs:
+content-packs-filepath contentpacks/
+content-packs-sort-filename sort.yaml
+ 
 # Chat:
 want-whitelist #f
 want-sequence-list #f

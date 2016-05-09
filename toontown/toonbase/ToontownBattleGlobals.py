@@ -126,7 +126,7 @@ AvPropDamage = (
   ((45, 70), (Levels[1][3], Levels[1][4])),
   ((60, 90), (Levels[1][4], Levels[1][5])),
   ((90, 200), (Levels[1][5], Levels[1][6])),
-  ((195, 250), (Levels[1][6], MaxSkill))
+  ((220, 300), (Levels[1][6], MaxSkill))
  ),
  ( # Lure
   ((0, 0), (0, 0)),
@@ -143,8 +143,8 @@ AvPropDamage = (
   ((9, 41), (Levels[3][2], Levels[3][3])),
   ((14, 46), (Levels[3][3], Levels[3][4])),
   ((19, 51), (Levels[3][4], Levels[3][5])),
-  ((25, 70), (Levels[3][5], Levels[3][6])),
-  ((90, 150), (Levels[3][6], MaxSkill))
+  ((25, 80), (Levels[3][5], Levels[3][6])),
+  ((150, 200), (Levels[3][6], MaxSkill))
  ),
  ( # Throw
   ((4, 16), (Levels[4][0], Levels[4][1])),
@@ -153,7 +153,7 @@ AvPropDamage = (
   ((24, 47), (Levels[4][3], Levels[4][4])),
   ((36, 80), (Levels[4][4], Levels[4][5])),
   ((48, 160), (Levels[4][5], Levels[4][6])),
-  ((120, 200), (Levels[4][6], MaxSkill))
+  ((200, 300), (Levels[4][6], MaxSkill))
  ),
  ( # Squirt
   ((3, 14), (Levels[5][0], Levels[5][1])),
@@ -162,7 +162,7 @@ AvPropDamage = (
   ((18, 41), (Levels[5][3], Levels[5][4])),
   ((27, 60), (Levels[5][4], Levels[5][5])),
   ((36, 100), (Levels[5][5], Levels[5][6])),
-  ((105, 180), (Levels[5][6], MaxSkill))
+  ((120, 200), (Levels[5][6], MaxSkill))
  ),
  ( # Drop
   ((10, 20), (Levels[6][0], Levels[6][1])),
@@ -171,7 +171,7 @@ AvPropDamage = (
   ((45, 85), (Levels[6][3], Levels[6][4])),
   ((60, 95), (Levels[6][4], Levels[6][5])),
   ((80, 200), (Levels[6][5], Levels[6][6])),
-  ((195, 250), (Levels[6][6], MaxSkill))
+  ((220, 300), (Levels[6][6], MaxSkill))
  )
 )
 ATK_SINGLE_TARGET = 0

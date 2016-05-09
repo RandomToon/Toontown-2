@@ -4431,6 +4431,8 @@ ColorPurple = 'purple'
 ColorWhite = 'white'
 ColorBlack = 'black'
 ColorYellow = 'yellow'
+ColorTeal = 'teal'
+ColorGray = 'gray'
 DivingGameTitle = 'Treasure Dive'
 DivingInstructionsSinglePlayer = 'Treasures will appear at the bottom of the lake.  Use the arrow keys to swim.  Avoid the fish and get the treasures up to the boat!'
 DivingInstructionsMultiPlayer = 'Treasures will appear at the bottom of the lake.  Use the arrow keys to swim.  Work together to get the treasures up to the boat!'
@@ -8566,21 +8568,6 @@ def getPetNameId(name):
 
     return 0
 
-DonaldChatter = ["I'm glad you're here today!",
- "You look like you're having fun.",
- "Oh boy, I'm having a good day.",
- 'I hope you are enjoying your ride!',
- 'I like meeting new people.',
- 'Have fun in my neighborhood.',
- 'I like to make people laugh.',
- 'Watch out for the Cogs!',
- 'Come aboard!',
- "I heard it's snowing at the Brrrgh.",
- 'Looks like the trolley is coming!',
- 'Sometimes I play trolley games just to eat the fruit pie!',
- 'I hope you are enjoying your stay in Toontown!',
- 'I like what you are wearing.',
- 'I love to play tag. Do you?']
 NPCFriendUnavailable = 'Unavailable'
 FireTalkMessage = "You're fired!"
 
