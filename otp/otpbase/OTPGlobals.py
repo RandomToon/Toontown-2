@@ -46,6 +46,11 @@ CEBeanToon = 18
 CERogerDog = 19
 CEFlippy = 20
 CESurlee = 21
+CEDimm = 22
+CEAlecTinn = 23
+CESlappy = 24
+CETutorialTom = 25
+CEOldman = 26
 CEGhost = 'g'
 CEName2Id = {
  'normal': CENormal,
@@ -66,7 +71,15 @@ CEName2Id = {
  'greentoon': CEGreenToon,
  'tinytoon': CETinyToon,
  'gianttoon': CEGiantToon,
- 'beantoon': CEBeanToon
+ 'beantoon': CEBeanToon,
+ 'rogerdog': CERogerDog,
+ 'flippy': CEFlippy,
+ 'surlee': CESurlee,
+ 'dimm': CEDimm,
+ 'alectinn': CEAlecTinn,
+ 'slappy': CESlappy,
+ 'tutorialtom': CETutorialTom,
+ 'oldman': CEOldman
 }
 BeanToonScale = 2.9
 GiantToonScale = 2.1

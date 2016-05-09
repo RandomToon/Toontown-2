@@ -850,7 +850,6 @@ NPCToonDict = {
  7008: (-1, lnames[7008], ('bls', 'ld', 's', 'f', 23, 0, 23, 23, 15, 6, 0, 0, 0, 18), 'f', 0, NPC_REGULAR),
  7009: (-1, lnames[7009], ('sll', 'ss', 's', 'm', 1, 0, 1, 1, 1, 6, 0, 0, 0, 6), 'm', 0, NPC_REGULAR),
  7010: (-1, lnames[7010], ('rll', 'ms', 'm', 'm', 2, 0, 2, 2, 19, 10, 13, 10, 7, 14, 0), 'm', 0, NPC_REGULAR),
- 7011: (-1, lnames[7011], ('fll', 'ls', 'm', 'm', 0, 0, 9, 0, 10, 10, 0, 10, 5, 27), 'm', 0, NPC_REGULAR),
  7012: (-1, lnames[7012], ('pss', 'ms', 'l', 'm', 20, 0, 20, 20, 26, 0, 0, 0, 15), 'm', 0, NPC_REGULAR),
  7013: (-1, lnames[7013], ('bsl', 'ms', 'm', 'f', 20, 0, 20, 20, 3, 4, 0, 0, 5, 18), 'f', 0, NPC_REGULAR),
  7014: (-1, lnames[7014], ('bll', 'ss', 's', 'm', 11, 0, 11, 11, 3, 6, 0, 0, 1, 2), 'm', 0, NPC_REGULAR),
@@ -918,7 +917,11 @@ def getBuildingTitle(zoneId):
 
 
 HQnpcFriends = {
+ 20000: (ToontownBattleGlobals.SOUND_TRACK, 5, 300, 5),
  2001: (ToontownBattleGlobals.HEAL_TRACK, 5, ToontownGlobals.MaxHpLimit, 5),
+ 2002: (ToontownBattleGlobals.DROP_TRACK, 5, 170, 5),
+ 2003: (ToontownBattleGlobals.SOUND_TRACK, 5, 200, 5),
+ 2005: (ToontownBattleGlobals.SOUND_TRACK, 5, 180, 5),
  2132: (ToontownBattleGlobals.HEAL_TRACK, 5, 70, 4),
  2121: (ToontownBattleGlobals.HEAL_TRACK, 5, 45, 3),
  2011: (ToontownBattleGlobals.TRAP_TRACK, 4, 180, 5),
@@ -966,11 +969,15 @@ FOnpcFriends = {
  7020: (ToontownBattleGlobals.SOUND_TRACK, 4, 30, 2),
  7021: (ToontownBattleGlobals.LURE_TRACK, 1, 0, 0),
  7022: (ToontownBattleGlobals.LURE_TRACK, 1, 0, 1),
+ 2002: (ToontownBattleGlobals.DROP_TRACK, 5, 170, 5),
+ 2003: (ToontownBattleGlobals.SOUND_TRACK, 5, 200, 5),
+ 2005: (ToontownBattleGlobals.SOUND_TRACK, 5, 180, 5),
  2018: (ToontownBattleGlobals.LURE_TRACK, 5, 0, 5),
  2019: (ToontownBattleGlobals.TRAP_TRACK, 5, 300, 5),
  2022: (ToontownBattleGlobals.DROP_TRACK, 5, 300, 5),
  2023: (ToontownBattleGlobals.SOUND_TRACK, 5, 300, 5),
  2024: (ToontownBattleGlobals.HEAL_TRACK, 5, ToontownGlobals.MaxHpLimit, 5),
+ 20000: (ToontownBattleGlobals.SOUND_TRACK, 5, 300, 5),
  7023: (ToontownBattleGlobals.LURE_TRACK, 3, 0, 2)
 }
 

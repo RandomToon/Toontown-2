@@ -100,6 +100,20 @@ loadPrcFileData('Settings: musicVol', 'audio-master-music-volume %s' % settings[
 loadPrcFileData('Settings: sfxVol', 'audio-master-sfx-volume %s' % settings['sfxVol'])
 loadPrcFileData('Settings: loadDisplay', 'load-display %s' % settings['loadDisplay'])
 
+from toontown.toonbase.ContentPacksManager import ContentPacksManager
+
+
+contentPacksFilepath = ConfigVariableString(
+    'content-packs-filepath', 'contentpacks/').getValue()
+if not os.path.exists(contentPacksFilepath):
+    os.makedirs(contentPacksFilepath)
+__builtin__.contentPacksMgr = ContentPacksManager(contentPacksFilepath)
+contentPacksSortFilename = ConfigVariableString(
+    'content-packs-sort-filename', 'sort.yaml').getValue()
+contentPacksMgr.readSortData(contentPacksSortFilename)
+contentPacksMgr.applyAll()
+contentPacksMgr.writeSortData(contentPacksSortFilename)
+
 import time
 import sys
 import random
@@ -108,12 +122,12 @@ from toontown.launcher.TTLauncher import TTLauncher
 
 __builtin__.launcher = TTLauncher()
 
-notify.info('Starting the game...')
+notify.info('Starting Toontown 2.0')
 tempLoader = Loader()
 backgroundNode = tempLoader.loadSync(Filename('phase_3/models/gui/loading-background'))
 from direct.gui import DirectGuiGlobals
 from direct.gui.DirectGui import *
-notify.info('Setting the default font...')
+notify.info('Setting Default Font')
 import ToontownGlobals
 DirectGuiGlobals.setDefaultFontFunc(ToontownGlobals.getInterfaceFont)
 import ToonBase
@@ -128,7 +142,7 @@ backgroundNodePath.setPos(0.0, 0.0, 0.0)
 backgroundNodePath.setScale(render2d, VBase3(1))
 backgroundNodePath.find('**/fg').hide()
 logo = OnscreenImage(
-    image='phase_3/maps/toontown-logo.jpg',
+    image='phase_3/maps/toontown-logo.png',
     scale=(1 / (4.0/3.0), 1, 1 / (4.0/3.0)),
     pos=backgroundNodePath.find('**/fg').getPos())
 logo.setTransparency(TransparencyAttrib.MAlpha)
@@ -145,7 +159,7 @@ if base.musicManagerIsValid:
     if music:
         music.setLoop(1)
         music.play()
-    notify.info('Loading the default GUI sounds...')
+    notify.info('Loading GUI Sounds')
     DirectGuiGlobals.setDefaultRolloverSound(base.loadSfx('phase_3/audio/sfx/GUI_rollover.ogg'))
     DirectGuiGlobals.setDefaultClickSound(base.loadSfx('phase_3/audio/sfx/GUI_create_toon_fwd.ogg'))
 else:

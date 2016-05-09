@@ -108,10 +108,10 @@ TextPropertiesManager.getGlobalPtr().setProperties('cobalt', cobalt)
 CRConnecting = 'Connecting...'
 CRNoConnectTryAgain = 'Could not connect to %s:%s. Try again?'
 CRNoConnectProxyNoPort = 'Could not connect to %s:%s.\n\nYou are communicating to the internet via a proxy, but your proxy does not permit connections on port %s.\n\nYou must open up this port, or disable your proxy, in order to play.  If your proxy has been provided by your ISP, you must contact your ISP to request them to open up this port.'
-CRNoDistrictsTryAgain = 'No Districts are available. Try again?'
+CRNoDistrictsTryAgain = 'No Districts are active. Try again?'
 CRRejectRemoveAvatar = 'The avatar was not able to be deleted, try again another time.'
-CRLostConnection = 'Your internet connection to the servers has been unexpectedly broken.'
-CRBootedReasons = {100: 'You have been disconnected because someone else logged in using your account on another computer.',
+CRLostConnection = 'Your internet connection to the servers has been dropped.'
+CRBootedReasons = {100: 'You have been disconnected because someone else logged in using your account!',
  101: 'Please relaunch the game from the official launcher.',
  102: 'You are not authorized to use administrator privileges.',
  103: 'You were banned by a moderator.\n\nBehave next time!',
@@ -1255,6 +1255,9 @@ SpeedChatStaticTextToontown = {100: 'Hi!',
  10025: "What do you call a three-humped camel? Pregnant!",
  10026: "Life isn't some cartoon musical where you sing a little song and all your insipid dreams magically come true. So let it go.",
  10027: "It's the eye of the tiger, the thrill of the fight!",
+ 10028: "On a scale of one to ten, how would you rate your pain?",
+ 10029: "I am programmed to assess everyone's health care needs.",
+ 10030: "Those that suffer a loss require support from friends and loved ones.",
  20000: SuitBrushOffs[None][0],
  20001: SuitBrushOffs[None][1],
  20002: SuitBrushOffs[None][2],

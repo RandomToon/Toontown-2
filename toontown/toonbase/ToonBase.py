@@ -155,6 +155,8 @@ class ToonBase(OTPBase.OTPBase):
         self.localAvatarStyle = None
 
         self.filters = CommonFilters(self.win, self.cam)
+        self.filters.setBlurSharpen(1.1)
+
         self.wantCogInterface = settings.get('cogInterface', True)
         self.wantWASD = settings.get('want-WASD', False)
         self.wantNews = settings.get('want-News', True)
