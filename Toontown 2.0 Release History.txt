@@ -123,3 +123,6 @@ Donald's Dreamland, Goofy Speedway, Chip and Dale's Minigolf, Minnie's Melodylan
 8. Removed Donald Duck from the boat in Donald's Dock
 9. Fixed Bug with the closet crashing your toon in the Estate
 10. New Toontown 2.0 Logo
+
+2.0.1:
+1. Toontown Online GM Icons

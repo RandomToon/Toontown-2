@@ -56,6 +56,7 @@ class DistributedToonAI(DistributedPlayerAI.DistributedPlayerAI, DistributedSmoo
      ToontownGlobals.FT_Arm: (CogDisguiseGlobals.leftArmIndex, CogDisguiseGlobals.rightArmIndex),
      ToontownGlobals.FT_Torso: (CogDisguiseGlobals.torsoIndex,)}
     petId = None
+    WantOldGMNameBan = config.GetBool('want-old-gm-name-ban', 1)
 
     def __init__(self, air):
         DistributedPlayerAI.DistributedPlayerAI.__init__(self, air)
@@ -176,6 +177,8 @@ class DistributedToonAI(DistributedPlayerAI.DistributedPlayerAI, DistributedSmoo
         DistributedSmoothNodeAI.DistributedSmoothNodeAI.announceGenerate(self)
 
         if self.isPlayerControlled():
+            if self.WantOldGMNameBan:
+                self._checkOldGMName()
             messenger.send('avatarEntered', [self])
 
         from toontown.toon.DistributedNPCToonBaseAI import DistributedNPCToonBaseAI
@@ -4039,28 +4042,23 @@ class DistributedToonAI(DistributedPlayerAI.DistributedPlayerAI, DistributedSmoo
     def setAwardNotify(self, awardNotify):
         self.awardNotify = awardNotify
 
-    def b_setGM(self, gmType):
-        if (gmType < CATEGORY_USER.defaultAccess) and (gmType != 0):
-            gmType = self.getGMType()
-        self.sendUpdate('setGM', [gmType])
-        self.setGM(gmType)
- 
-    def setGM(self, gmType):
-        if (gmType < CATEGORY_USER.defaultAccess) and (gmType != 0):
-            gmType = self.getGMType()
-        self._isGM = gmType != 0
+    def b_setGM(self, type):
+        self.sendUpdate('setGM', [type])
+        self.setGM(type)
+
+    def setGM(self, type):
+        self._isGM = type != 0
         self._gmType = None
         if self._isGM:
-            self._gmType = gmType
- 
+            self._gmType = type - 1
+            MaxGMType = len(TTLocalizer.GM_NAMES) - 1
+            if self._gmType > MaxGMType:
+                self.notify.warning('toon %s has invalid GM type: %s' % (self.doId, self._gmType))
+                self._gmType = MaxGMType
+        return
+
     def isGM(self):
-        return (self._isGM and (not self._gmDisabled))
- 
-    def getGMType(self):
-        gmType = self._gmType
-        if (gmType < CATEGORY_USER.defaultAccess) and (gmType != 0):
-            gmType = self.getAdminAccess()
-        return gmType
+        return self._isGM
  
     def _nameIsPrefixed(self, prefix):
         if len(self.name) > len(prefix):
@@ -4070,24 +4068,33 @@ class DistributedToonAI(DistributedPlayerAI.DistributedPlayerAI, DistributedSmoo
  
     def _updateGMName(self, formerType = None):
         if formerType is None:
-           formerType = self._gmType
+            formerType = self._gmType
         name = self.name
         if formerType is not None:
             gmPrefix = TTLocalizer.GM_NAMES[formerType] + ' '
             if self._nameIsPrefixed(gmPrefix):
                 name = self.name[len(gmPrefix):]
         if self._isGM:
-           gmPrefix = TTLocalizer.GM_NAMES[self._gmType] + ' '
-           newName = gmPrefix + name
+            gmPrefix = TTLocalizer.GM_NAMES[self._gmType] + ' '
+            newName = gmPrefix + name
         else:
-           newName = name
+            newName = name
         if self.name != newName:
-           self.b_setName(newName)
+            self.b_setName(newName)
         return
- 
+
     def setName(self, name):
         DistributedPlayerAI.DistributedPlayerAI.setName(self, name)
-        self._updateGMName()
+        if self.WantOldGMNameBan:
+            if self.isGenerated():
+                self._checkOldGMName()
+
+    def _checkOldGMName(self):
+        if '$' in set(self.name):
+            if config.GetBool('want-ban-old-gm-name', 0):
+                self.ban('invalid name: %s' % self.name)
+            else:
+                self.air.writeServerEvent('suspicious', avId=self.doId, issue='$ found in toon name')
  
     def teleportResponseToAI(self, toAvId, available, shardId, hoodId, zoneId, fromAvId):
         senderId = self.air.getAvatarIdFromSender()
@@ -4692,48 +4699,31 @@ def shoes(shoesIndex, shoesTex=0):
     target.b_setShoes(shoesIndex, shoesTex, 0)
     return "Set %s's shoes to %d, %d!" % (target.getName(), shoesIndex, shoesTex)
 
-@magicWord(category=CATEGORY_COMMUNITY_MANAGER, types=[int])
-def gmIcon(accessLevel=None):
-    """
-    Toggles the target's GM icon. If an access level is provided, however, the
-    target's GM icon will be overridden.
-    """
-    invoker = spellbook.getInvoker()
-    target = spellbook.getTarget()
-    invokerAccess = spellbook.getInvokerAccess()
-    if invokerAccess != CATEGORY_SYSTEM_ADMINISTRATOR.defaultAccess:
-        if accessLevel is not None:
-            return "You must be of a higher access level to override your GM icon."
-        target = spellbook.getInvoker()
-    target.sendUpdate('setGM', [0])
-    if target.isGM() and (accessLevel is None):
-        target._gmDisabled = True
-        if target == invoker:
-            return 'Your GM icon has been disabled for this session!'
-        return "%s's GM icon has been disabled for this session!" % target.getName()
+@magicWord(category=CATEGORY_COMMUNITY_MANAGER)
+def togGM():
+    """Toggle GM Icon for toon."""
+    access = spellbook.getInvokerAccess()
+    if spellbook.getInvoker().isGM():
+        spellbook.getInvoker().b_setGM(0)
+        return 'You have disabled your GM icon.'
     else:
-        target._gmDisabled = False
-        if accessLevel is None:
-            accessLevel = target.getAdminAccess()
-        if accessLevel != target.getGMType():
-            if invokerAccess != CATEGORY_SYSTEM_ADMINISTRATOR.defaultAccess:
-                accessLevel = target.getGMType()
-        if accessLevel not in (0,
-                               CATEGORY_COMMUNITY_MANAGER.defaultAccess,
-                               CATEGORY_MODERATOR.defaultAccess,
-                               CATEGORY_CREATIVE.defaultAccess,
-                               CATEGORY_PROGRAMMER.defaultAccess,
-                               CATEGORY_ADMINISTRATOR.defaultAccess,
-                               CATEGORY_SYSTEM_ADMINISTRATOR.defaultAccess):
-            return 'Invalid access level!'
-        target.b_setGM(accessLevel)
-        if accessLevel == target.getAdminAccess():
-            if target == invoker:
-                return 'Your GM icon is now enabled!'
-            return "%s's GM icon is now enabled!" % target.getName()
-        if target == invoker:
-            return 'Your GM icon has been set to: ' + str(accessLevel)
-        return "%s's GM icon has been set to: %d" % (target.getName(), accessLevel)
+        if access>=400:
+            spellbook.getInvoker().b_setGM(2)
+        elif access>=200:
+            spellbook.getInvoker().b_setGM(3)
+        return 'You have enabled your GM icon.'
+
+@magicWord(category=CATEGORY_COMMUNITY_MANAGER, types=[int])
+def setGM(gmId):
+    """Set the target's GM level (used for icon)."""
+    if gmId == 1:
+        return 'You cannot set a toon to TOON COUNCIL.'
+    if not 0 <= gmId <= 4:
+        return 'Invalid GM type specified.'
+    if spellbook.getTarget().isGM() and gmId != 0: 
+        spellbook.getTarget().b_setGM(0)
+    spellbook.getTarget().b_setGM(gmId)
+    return 'You have set %s to GM type %s' % (spellbook.getTarget().getName(), gmId)
 
 @magicWord(category=CATEGORY_COMMUNITY_MANAGER)
 def ghost():
