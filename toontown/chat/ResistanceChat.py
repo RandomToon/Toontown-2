@@ -205,7 +205,7 @@ def doEffect(textId, speakingToon, nearbyToons):
             p = effect.getParticlesNamed(name)
             p.renderer.setFromNode(icon)
         fadeColor = VBase4(0, 0, 1, 1)
-    if menuIndex == RESISTANCE_MERITS:
+    elif menuIndex == RESISTANCE_MERITS:
         effect = BattleParticles.loadParticleFile('resistanceEffectSprite.ptf')
         cogModel = loader.loadModel('phase_3/models/gui/cog_icons')
         cogModel.setScale(0.75)
@@ -225,7 +225,7 @@ def doEffect(textId, speakingToon, nearbyToons):
 
         fadeColor = VBase4(0.7, 0.7, 0.7, 1.0)
         cogModel.removeNode()
-    if menuIndex == RESISTANCE_TICKETS:
+    elif menuIndex == RESISTANCE_TICKETS:
         effect = BattleParticles.loadParticleFile('resistanceEffectSprite.ptf')
         model = loader.loadModel('phase_6/models/karting/tickets')
         model.flattenLight()

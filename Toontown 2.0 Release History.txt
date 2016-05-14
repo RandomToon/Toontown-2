@@ -126,3 +126,6 @@ Donald's Dreamland, Goofy Speedway, Chip and Dale's Minigolf, Minnie's Melodylan
 
 2.0.1:
 1. Toontown Online GM Icons
+
+2.0.2:
+1. Toontown Online Soundtrack
