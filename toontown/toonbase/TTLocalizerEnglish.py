@@ -1896,6 +1896,7 @@ SkeleRevivePostFix = 'XR Alpha'
 SkeleRevivePostFix2 = 'XR Beta'
 SkeleRevivePostFix3 = 'XR Gamma'
 SkeleRevivePostFix4 = 'XR Delta'
+SkeleRevivePostFix5 = 'XR Epsilon'
 SkeleRevivePostFixUltimate = 'XR Ultimate'
 SkeleRevivePreFix = 'XR'
 AvatarDetailPanelOK = lOK
@@ -4374,6 +4375,12 @@ TugOfWarGameReady = 'Ready...'
 TugOfWarGameEnd = 'Good game!'
 TugOfWarGameTie = 'You tied!'
 TugOfWarPowerMeter = 'Power meter'
+PairingGameTitle = 'Toon Memory Game'
+PairingGameInstructions = 'Press Delete to open a card. Match 2 cards to score a point.  Make a match with the bonus glow and earn an extra point.  Earn more points by keeping the flips low.'
+PairingGameInstructionsMulti = 'Press Delete to open a card. Press Control to signal another player to open a card. Match 2 cards to score a point.  Make a match with the bonus glow and earn an extra point.  Earn more points by keeping the flips low.'
+PairingGamePerfect = 'PERFECT!!'
+PairingGameFlips = 'Flips:'
+PairingGamePoints = 'Points:'
 PatternGameTitle = 'Match Jaymo'
 PatternGameInstructions = 'Jaymo will show you a dance sequence. ' + "Try to repeat Jaymo's dance just the way you see it using the arrow keys!"
 PatternGameWatch = 'Watch these dance steps...'
@@ -4765,31 +4772,43 @@ QuestScript150_3 = 'Once you have made a friend, come back here.'
 QuestScript150_4 = 'Some tasks are too difficult to do alone!'
 MissingKeySanityCheck = 'Ignore me'
 SellbotBossName = 'Senior V. P.'
+DeadlySellbotBossName = 'Deadly Senior V. P.'
 CashbotBossName = 'C. F. O.'
 LawbotBossName = 'Chief Justice'
 BossbotBossName = 'C. E. O.'
 BossCogNameWithDept = '%(name)s\n%(dept)s'
-BossCogPromoteDoobers = 'You are hereby promoted to full-fledged %s.  Congratulations!'
-BossCogDoobersAway = {'s': 'Make The Chairman proud by making some sales.'}
+DeadlyBossCogPromoteDoobers = 'Welcome back.  It seems the Chairman made a wise decision promoting you.'
+BossCogDoobersAway = {'s': 'Go!  And make that sale!'}
+DeadlyBossCogDoobersAway = 'Great job on those sales, Sellbots!  I have a meeting to attend, so please go and continue to work on your assignments.'
 BossCogWelcomeToons = 'Welcome, new Cogs!'
+DeadlyBossCogWelcomeToons = "Oh, look what we have here... I've been expecting you, Toons! You have been a annoying pest for The Cogs for too long."
 BossCogPromoteToons = 'You are hereby promoted to full-fledged %s.  Congratu--'
+DeadlyBossCogPromoteToons = "You aren't fooling me with your cheap disguises this time, Toons!"
 CagedToonInterruptBoss = 'Hey! Hiya! Hey over there!'
-CagedToonRescueQuery = 'Did you come to rescue me?'
-BossCogDiscoverToons = 'Toons! In disguise!'
+DeadlyCagedToonInterruptBoss = 'Toons?!  What are you doing here? This is a dangerous battle arena set up by The Cogs to destroy Toons.'
+CagedToonRescueQuery = 'So, did you Toons come to rescue me?'
+DeadlyCagedToonRescueQuery = "I'm up here!  Leave now! There is a new Vice President in place, and he is tough, and not messing around! Get out of here before he spots you."
+BossCogDiscoverToons = 'Huh?  Toons!  In disguise!'
+DeadlyBossCogDiscoverToons = 'SILENCE PRISONER!! Get out of those cheaply made disguises!'
 BossCogAttackToons = 'Attack!!'
+DeadlyBossCogAttackToons = "I've had enough with all of the Toony shenanigans! EXTERMINATE ALL TOONS AND PREPARE TO MEET YOUR DOOM!"
 CagedToonDrop = ["Great job!  You're wearing him down!",
  "Keep after him!  He's on the run!",
  'You guys are doing great!',
  "Fantastic!  You've almost got him now!"]
 CagedToonPrepareBattleTwo = "Look out, he's trying to get away!\x07Help me, everyone--get up here and stop him!"
-CagedToonPrepareBattleThree = "Hooray, I'm almost free!\x07Now you need to attack the V.P. Cog directly.\x07I've got a whole bunch of pies you can use!\x07Jump up and touch the bottom of my cage and I'll give you some pies.\x07Press the Delete key to throw pies once you've got them!"
+CagedToonPrepareBattleThree = "Hooray, I'm almost free!\x07Now you need to attack the V.P. directly.\x07I've got a whole bunch of pies you can use!\x07Jump up and touch the bottom of my cage and I'll give you some pies.\x07Press the Delete key to throw pies once you've got them!"
+DeadlyCagedToonPrepareBattleThree = "Hooray, I'm almost free!\x07Now you need to attack the Deadly VP directly.\x07Sadly, I only have a limited number of pies left.\x07Jump up and touch the bottom of my cage and I'll give you some of the pies.\x07Press the Delete key to throw pies once you've got them!"
 BossBattleNeedMorePies = 'You need to get more pies!'
 BossBattleHowToGetPies = 'Jump up to touch the cage to get pies.'
 BossBattleHowToThrowPies = 'Press the Delete key to throw pies!'
 CagedToonYippee = 'Yippee!'
 CagedToonThankYou = "It's great to be free!\x07Thanks for all your help!\x07I am in your debt.\x07Here's my card. If you ever need a hand in battle, give a shout!\x07Just click on your SOS button."
-CagedToonPromotion = "\x07Say--that V.P. Cog left behind your promotion papers.\x07I'll file them for you on the way out, so you'll get your promotion!"
-CagedToonLastPromotion = "\x07Wow, you've reached level %s on your Cog suit!\x07Cogs don't get promoted higher than that.\x07You can't upgrade your Cog suit anymore, but you can certainly keep rescuing Toons!"
+DeadlyCagedToonThankYou = "You toons did it!\x07What a fight that was! I was nervous for you guys.\x07Thank you for having courage to save me!."
+CagedToonLevelPromotion = "\x07Say--the V.P. left behind your promotion papers.\x07I'll file them for you on the way out, so you'll get your promotion!"
+DeadlyCagedToonLevelPromotion = "\x07Say--the Deadly VP left behind your promotion papers.\x07I'll file them for you on the way out, so you'll get your promotion!"
+CagedToonSuitPromotion = "\x07It seems like you've reached the highest level you can for a %s.\x07You can continue upgrading your Cog suit through the disguise page in your Shticker Book.\x07Along with getting a new Cog suit, you will also get a 1 point Laff boost!"
+CagedToonLastPromotion = "\x07Wow, you've reached level %s on your Cog suit!\x07I'm pretty sure Cogs don't get promoted higher than that.\x07You can't upgrade your Cog suit anymore, but you can certainly keep rescuing Toons!"
 CagedToonHPBoost = "\x07You've rescued a lot of Toons from this HQ.\x07The Toon Council has decided to give you another Laff point. Congratulations!"
 CagedToonMaxed = '\x07I see that you have a level %s Cog suit. Very impressive!\x07On behalf of the Toon Council, thank you for coming back to rescue more Toons!'
 CagedToonGoodbye = 'See ya!'
@@ -5684,6 +5703,7 @@ NPCToonNames = {20000: 'Tutorial Tom',
  2022: 'Alec Tinn',
  2023: 'Slappy',
  2024: 'Roger Dog',
+ 2025: 'Kion',
  2101: 'Dentist Daniel',
  2102: 'Sheriff Sherry',
  2103: 'Sneezy Kitty',
@@ -8240,6 +8260,7 @@ ElevatorCashBotMint0 = 'Coin Mint'
 ElevatorCashBotMint1 = 'Dollar Mint'
 ElevatorCashBotMint2 = 'Bullion Mint'
 ElevatorSellBotBoss = 'Sellbot Towers'
+ElevatorDeadlySellBotBoss = 'Deadly Sellbot Towers'
 ElevatorSellBotFactory0 = 'Front Entrance'
 ElevatorSellBotFactory1 = 'Side Entrance'
 ElevatorSellBotFactory2 = 'Megacorp Entrance'
@@ -8817,6 +8838,8 @@ FpsMeterLabelOn = 'Frame Rate Meter- On'
 FpsMeterLabelOff = 'Frame Rate Meter- Off'
 
 DefaultDoodleName = 'Smiley'
+
+PlayingCardUnknown = 'Card Name is unknown'
 
 Blacklist = [
  "$1ut",

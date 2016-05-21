@@ -165,7 +165,7 @@ def createLocalNPC(npcId):
 
 # Some buildings don't have NPCs, so we need to store their zone IDs here:
 badBlocks = [
-    2606, 2602, 2708, 2705, 2704, 2701, 2803, 2804, 2809, 2805, 5607, 1707,
+    2602, 2708, 2705, 2704, 2701, 2803, 2804, 2809, 2805, 5607, 1707,
     5609, 3605, 3703
 ]
 
@@ -209,6 +209,7 @@ NPCToonDict = {
  2022: (-1, lnames[2022],('cll', 'ls', 'l', 'm', 2, 0, 2, 2, 14, 9, 10, 9, 1, 14), 'm', 0, NPC_REGULAR),
  2023: (-1, lnames[2023], ('fls', 'ms', 'l', 'm', 14, 0, 14, 14, 152, 27, 139, 27, 59, 27), 'm', 0, NPC_REGULAR),
  2024: (-1, lnames[2024], ('dll', 'ls', 'l', 'm', 19, 0, 21, 8, 4, 0, 4, 0, 7, 15), 'm', 0, NPC_REGULAR),
+ 2025: (2606, lnames[2025], ('cls', 'ms', 'l', 'm', 2, 0, 2, 2, 14, 9, 10, 9, 1, 14), 'm', 0, NPC_REGULAR),
  2101: (2601, lnames[2101], ('rll', 'ms', 'l', 'm', 15, 0, 15, 15, 0, 9, 0, 9, 0, 6), 'm', 1, NPC_REGULAR),
  2102: (2619, lnames[2102], 'r', 'f', 0, NPC_REGULAR),
  2103: (2616, lnames[2103], ('csl', 'ss', 's', 'm', 9, 0, 8, 5, 0, 11, 0, 11, 2, 10), 'm', 0, NPC_REGULAR),
@@ -884,7 +885,7 @@ LaffRestockPositions = {lnames[11001]: ((-27.0, -170.0, -19.6), 215.0),
 GlovePositions = {lnames[2021]: ((101, -14, 4), -305)}
 del lnames
 zone2NpcDict = {}
-
+ 
 def generateZone2NpcDict():
     if zone2NpcDict:
         return
@@ -930,6 +931,7 @@ HQnpcFriends = {
  2022: (ToontownBattleGlobals.DROP_TRACK, 5, 300, 5),
  2023: (ToontownBattleGlobals.SOUND_TRACK, 5, 300, 5),
  2024: (ToontownBattleGlobals.HEAL_TRACK, 5, ToontownGlobals.MaxHpLimit, 5),
+ 2025: (ToontownBattleGlobals.DROP_TRACK, 5, 250, 5),
  3007: (ToontownBattleGlobals.TRAP_TRACK, 4, 70, 4),
  1001: (ToontownBattleGlobals.TRAP_TRACK, 4, 50, 3),
  3112: (ToontownBattleGlobals.LURE_TRACK, 5, 0, 5),
@@ -977,6 +979,7 @@ FOnpcFriends = {
  2022: (ToontownBattleGlobals.DROP_TRACK, 5, 300, 5),
  2023: (ToontownBattleGlobals.SOUND_TRACK, 5, 300, 5),
  2024: (ToontownBattleGlobals.HEAL_TRACK, 5, ToontownGlobals.MaxHpLimit, 5),
+ 2025: (ToontownBattleGlobals.DROP_TRACK, 5, 250, 5),
  20000: (ToontownBattleGlobals.SOUND_TRACK, 5, 300, 5),
  7023: (ToontownBattleGlobals.LURE_TRACK, 3, 0, 2)
 }
@@ -992,6 +995,13 @@ for npcId in disabledSosCards:
 
 npcFriends = dict(HQnpcFriends)
 npcFriends.update(FOnpcFriends)
+
+DeadlySellbotNPCS = {}
+  
+for npcId in HQnpcFriends:
+    npcInfo = HQnpcFriends[npcId]
+    if npcInfo[3] == 5:
+        DeadlySellbotNPCS[npcId] = npcInfo
 
 def getNPCName(npcId):
     if npcId in NPCToonDict:

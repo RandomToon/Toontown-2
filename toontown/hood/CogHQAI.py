@@ -10,16 +10,19 @@ class CogHQAI:
 
     def __init__(
             self, air, zoneId, lobbyZoneId, lobbyFADoorCode,
-            lobbyElevatorCtor, bossCtor):
+            lobbyElevatorCtor, bossCtor, DeadlyElevatorCtor=None, DeadlyBossCtor=None):
         self.air = air
         self.zoneId = zoneId
         self.lobbyZoneId = lobbyZoneId
         self.lobbyFADoorCode = lobbyFADoorCode
         self.lobbyElevatorCtor = lobbyElevatorCtor
         self.bossCtor = bossCtor
+        self.DeadlyElevatorCtor = DeadlyElevatorCtor
+        self.DeadlyBossCtor = DeadlyBossCtor
 
         self.lobbyMgr = None
         self.lobbyElevator = None
+        self.DeadlyElevator = None
         self.boardingParty = None
 
         self.notify.info('Creating objects... ' + self.getLocationName(zoneId))
@@ -47,7 +50,7 @@ class CogHQAI:
         del self.npcs
 
     def createLobbyManager(self):
-        self.lobbyMgr = LobbyManagerAI.LobbyManagerAI(self.air, self.bossCtor)
+        self.lobbyMgr = LobbyManagerAI.LobbyManagerAI(self.air, self.bossCtor, self.DeadlyBossCtor)
         self.lobbyMgr.generateWithRequired(self.lobbyZoneId)
 
     def createLobbyElevator(self):
@@ -55,6 +58,11 @@ class CogHQAI:
             self.air, self.lobbyMgr, self.lobbyZoneId)
         self.lobbyElevator.generateWithRequired(self.lobbyZoneId)
 
+        if self.DeadlyElevatorCtor is not None:
+            self.DeadlyElevator = self.DeadlyElevatorCtor(
+                self.air, self.lobbyMgr, self.lobbyZoneId)
+            self.DeadlyElevator.generateWithRequired(self.lobbyZoneId)
+ 
     def makeCogHQDoor(self, destinationZone, intDoorIndex, extDoorIndex, lock=0):
         intDoor = DistributedCogHQDoorAI.DistributedCogHQDoorAI(
             self.air, 0, DoorTypes.INT_COGHQ, self.zoneId,
@@ -77,5 +85,9 @@ class CogHQAI:
         return extDoor
 
     def createBoardingParty(self):
-        self.boardingParty = DistributedBoardingPartyAI(self.air, [self.lobbyElevator.doId], 8)
+        elevatorList = [self.lobbyElevator.doId]
+        if self.DeadlyElevator is not None:
+            elevatorList.append(self.DeadlyElevator.doId)
+ 
+        self.boardingParty = DistributedBoardingPartyAI(self.air, elevatorList, 8)
         self.boardingParty.generateWithRequired(self.lobbyZoneId)

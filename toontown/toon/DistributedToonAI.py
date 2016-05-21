@@ -2442,6 +2442,9 @@ class DistributedToonAI(DistributedPlayerAI.DistributedPlayerAI, DistributedSmoo
     def setNumPies(self, numPies):
         self.numPies = numPies
 
+    def getNumPies(self):
+        return self.numPies
+ 
     def b_setPieType(self, pieType):
         self.setPieType(pieType)
         self.d_setPieType(pieType)
@@ -4325,7 +4328,7 @@ def cheesyEffect(value, hood=0, expire=0):
         if value not in OTPGlobals.CEName2Id:
             return 'Invalid cheesy effect value: %s' % value
         value = OTPGlobals.CEName2Id[value]
-    elif not 0 <= value <= 26:
+    elif not 0 <= value <= 27:
         return 'Invalid cheesy effect value: %d' % value
     if (hood != 0) and (not 1000 <= hood < ToontownGlobals.DynamicZonesBegin):
         return 'Invalid hood ID: %d' % hood
