@@ -141,3 +141,6 @@ Donald's Dreamland, Goofy Speedway, Chip and Dale's Minigolf, Minnie's Melodylan
 8. New Kion Cheesy Effect
 9. Toon Memory Game
 10. Fixed Bug with no music in Tug of War and Cannon Game
+
+2.1.1:
+1. Fixed Bug with no minigame model for background of Toon Memory Game
