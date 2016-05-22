@@ -16,6 +16,7 @@ import DistributedRingGameAI
 import DistributedTagGameAI
 import DistributedTargetGameAI
 import DistributedPairingGameAI
+import DistributedPhotoGameAI
 import DistributedTugOfWarGameAI
 import DistributedTwoDGameAI
 import DistributedVineGameAI
@@ -66,6 +67,7 @@ def createMinigame(air, playerArray, trolleyZone, minigameZone=None,
         ToontownGlobals.DivingGameId: DistributedDivingGameAI.DistributedDivingGameAI,
         ToontownGlobals.TargetGameId: DistributedTargetGameAI.DistributedTargetGameAI,
         ToontownGlobals.PairingGameId: DistributedPairingGameAI.DistributedPairingGameAI,
+        ToontownGlobals.PhotoGameId: DistributedPhotoGameAI.DistributedPhotoGameAI,
         ToontownGlobals.MinigameTemplateId: DistributedMinigameTemplateAI.DistributedMinigameTemplateAI,
         ToontownGlobals.VineGameId: DistributedVineGameAI.DistributedVineGameAI,
         ToontownGlobals.IceGameId: DistributedIceGameAI.DistributedIceGameAI,

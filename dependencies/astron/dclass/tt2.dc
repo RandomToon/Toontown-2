@@ -387,6 +387,7 @@ from toontown.estate import DistributedPlantBase/AI
 from toontown.estate import DistributedLawnDecor/AI
 from toontown.minigame import DistributedVineGame/AI
 from toontown.minigame import DistributedPairingGame/AI
+from toontown.minigame import DistributedPhotoGame/AI
 from toontown.golf import DistributedPhysicsWorld/AI
 from toontown.golf import DistributedGolfHole/AI
 from toontown.golf import DistributedGolfCourse/AI
@@ -2740,6 +2741,12 @@ dclass DistributedPairingGame : DistributedMinigame {
   setSignaling(uint32 avId) clsend broadcast;
 };
 
+dclass DistributedPhotoGame : DistributedMinigame {
+  newClientPhotoScore(uint8, char [0-256], uint32/100) airecv clsend;
+  newAIPhotoScore(uint32, uint8, uint32/100) broadcast;
+  filmOut() airecv clsend;
+};
+ 
 dclass DistributedGolfKart : DistributedObject {
   setState(string, int16) broadcast ram;
   fillSlot0(uint32) broadcast ram;
