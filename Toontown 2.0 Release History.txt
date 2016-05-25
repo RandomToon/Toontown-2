@@ -147,3 +147,7 @@ Donald's Dreamland, Goofy Speedway, Chip and Dale's Minigolf, Minnie's Melodylan
 
 2.1.2:
 1. Photo Fun
+
+2.2.0:
+1. New Emotions
+2. Deadly CFO

@@ -18,6 +18,7 @@ class DistributedCashbotBossAI(DistributedBossCogAI.DistributedBossCogAI, FSM.FS
     notify = DirectNotifyGlobal.directNotify.newCategory('DistributedCashbotBossAI')
     maxGoons = 8
     BossName = "CFO"
+    WANT_SAFES = True
 
     def __init__(self, air):
         DistributedBossCogAI.DistributedBossCogAI.__init__(self, air, 'm')
@@ -99,7 +100,8 @@ class DistributedCashbotBossAI(DistributedBossCogAI.DistributedBossCogAI, FSM.FS
                 crane.generateWithRequired(self.zoneId)
                 self.cranes.append(crane)
 
-        if self.safes == None:
+        if self.WANT_SAFES:
+           if self.safes == None:
             self.safes = []
             for index in xrange(len(ToontownGlobals.CashbotBossSafePosHprs)):
                 safe = DistributedCashbotBossSafeAI.DistributedCashbotBossSafeAI(self.air, self, index)
@@ -108,8 +110,10 @@ class DistributedCashbotBossAI(DistributedBossCogAI.DistributedBossCogAI, FSM.FS
 
         if self.goons == None:
             self.goons = []
-        return
 
+    def setMakeBattleFreeObjects(self, newFunc):
+        self.__makeBattleThreeObjects = newFunc
+ 
     def __resetBattleThreeObjects(self):
         if self.cranes != None:
             for crane in self.cranes:
@@ -119,7 +123,6 @@ class DistributedCashbotBossAI(DistributedBossCogAI.DistributedBossCogAI, FSM.FS
             for safe in self.safes:
                 safe.request('Initial')
 
-        return
 
     def __deleteBattleThreeObjects(self):
         if self.cranes != None:
@@ -275,7 +278,6 @@ class DistributedCashbotBossAI(DistributedBossCogAI.DistributedBossCogAI, FSM.FS
             goon.STUN_TIME = self.progressValue(30, 8)
             goon.b_setupGoon(velocity=self.progressRandomValue(3, 7), hFov=self.progressRandomValue(70, 80), attackRadius=self.progressRandomValue(6, 15), strength=int(self.progressRandomValue(5, 25)), scale=self.progressRandomValue(0.5, 1.5))
         goon.request(side)
-        return
 
     def __chooseOldGoon(self):
         for goon in self.goons:

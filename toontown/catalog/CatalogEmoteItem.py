@@ -109,7 +109,7 @@ class CatalogEmoteItem(CatalogItem.CatalogItem):
         return self.emoteIndex
 
     def getBasePrice(self):
-        return 550
+        return 400
 
     def decodeDatagram(self, di, versionNumber, store):
         CatalogItem.CatalogItem.decodeDatagram(self, di, versionNumber, store)

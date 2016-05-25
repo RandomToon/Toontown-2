@@ -43,10 +43,10 @@ class TTLauncher:
         sys.stderr = logErr
 
     def getPlayToken(self):
-        return self.getValue('TTS_PLAYCOOKIE')
+        return self.getValue('TT_PLAYCOOKIE')
 
     def getGameServer(self):
-        return self.getValue('TTS_GAMESERVER')
+        return self.getValue('TT_GAMESERVER')
 
     def getValue(self, key, default = None):
         return os.environ.get(key, default)

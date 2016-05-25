@@ -151,7 +151,12 @@ def getRandomId():
     itemIndex = random.choice(getItems(menuIndex))
     return encodeId(menuIndex, itemIndex)
 
-
+def getRandomDeadlyId():
+    menuIndex = random.choice([RESISTANCE_TOONUP, RESISTANCE_RESTOCK])
+    itemIndex = 4 if menuIndex == RESISTANCE_TOONUP else 7
+    return encodeId(menuIndex, itemIndex)
+ 
+ 
 def doEffect(textId, speakingToon, nearbyToons):
     menuIndex, _ = decodeId(textId)
     itemValue = getItemValue(textId)
