@@ -17,7 +17,7 @@ set /P INPUT=Selection:
 if %INPUT%==1 (
     set TT_GAMESERVER=127.0.0.1
 ) else if %INPUT%==2 (
-    set TT_GAMESERVER=158.69.170.152
+    set TT_GAMESERVER=13.65.94.131
 ) else if %INPUT%==3 (
     SET TT_GAMESERVER=162.251.164.150
 ) else (
