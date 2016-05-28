@@ -444,7 +444,6 @@ def getSprayTrack(battle, color, origin, target, dScaleUp, dHold, dScaleDown, ho
     track.append(Func(battle.movie.clearRenderProp, sprayProp))
     return track
 
-
 T_HOLE_LEAVES_HAND = 1.708
 T_TELEPORT_ANIM = 3.3
 T_HOLE_CLOSES = 0.3
@@ -470,7 +469,6 @@ def getToonTeleportOutInterval(toon):
     runTrack = Sequence(ActorInterval(toon, 'teleport', duration=dur), Wait(T_HOLE_CLOSES), Func(toon.detachNode))
     return Parallel(runTrack, holeAnimTrack, holeTrack)
 
-
 def getToonTeleportInInterval(toon):
     hole = toon.getHoleActors()[0]
     holeAnimTrack = Sequence()
@@ -484,7 +482,6 @@ def getToonTeleportInInterval(toon):
     delay = T_TELEPORT_ANIM - T_HOLE_LEAVES_HAND
     jumpTrack = Sequence(Wait(delay), Func(toon.reparentTo, render), ActorInterval(toon, 'jump'))
     return Parallel(holeAnimTrack, jumpTrack)
-
 
 def getSuitRakeOffset(suit):
     suitName = suit.getStyleName()

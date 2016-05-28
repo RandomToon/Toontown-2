@@ -115,16 +115,16 @@ CRBootedReasons = {100: 'You have been disconnected because someone else logged 
  101: 'Please relaunch the game from the official launcher.',
  102: 'You are not authorized to use administrator privileges.',
  103: 'You were banned by a moderator.\n\nBehave next time!',
- 105: 'Toontown 2.0 is now temporarily closed for maintenance. Everyone who was playing has been disconnected from the game.\n\nFor more information, please visit the Toontown 2.0 website.',
+ 105: 'Toontown 2.0 is temporarily closed for maintenance. Everyone who was playing has been disconnected from the game.\n\nFor more information, please visit the Toontown 2.0 website.',
  124: 'Your installed files are out of date!  Use the official launcher to download the newest version, or contact Toontown 2.0 Support if the problem persists.',
  153: 'The district you were playing on has been reset.  Everyone who was playing on that district has been disconnected.  However, you should be able to connect again and go right back into the game.',
  166: 'You were disconnected to prevent a district reset.'}
 CRBootedReasonUnknownCode = 'An unexpected problem has occurred (error code %s).  Your connection has been lost, but you should be able to connect again and go right back into the game.'
 CRTryConnectAgain = '\n\nTry to connect again?'
-CRToontownUnavailable = 'The server appears to be temporarily unavailable, still trying...'
+CRToontownUnavailable = 'The server appears to be unavailable! The game is still trying to reconnect!'
 CRToontownUnavailableCancel = lCancel
 CRNameCongratulations = 'CONGRATULATIONS!!'
-CRNameAccepted = 'Your name has been\napproved by the Toon Council.\n\nFrom this day forth\nyou will be named\n"%s"'
+CRNameAccepted = 'Your name was\napproved by the Toon Council.\n\nFrom this day forth\nyou will be named\n"%s"'
 CRMaintenanceCountdownMessage = 'Attention Toons! Toontown 2.0 will be going down for maintenance in %d minutes.'
 CRMaintenanceMessage = 'Attention Toons! Toontown 2.0 is now going down for maintenance.'
 AfkForceAcknowledgeMessage = 'Your toon got sleepy and went to bed.'
@@ -277,7 +277,14 @@ EmoteList = ['Wave',
  'Delighted',
  'Furious',
  'Laugh',
- 'Taunt']
+ 'Taunt',
+ 'Rage',
+ 'Greened',
+ 'Melt',
+ 'Cheer',
+ 'Duck',
+ 'Levitate',
+ 'Teleport']
 EmoteWhispers = ['%s waves.',
  '%s is happy.',
  '%s is sad.',
@@ -303,7 +310,8 @@ EmoteWhispers = ['%s waves.',
  '%s is delighted.',
  '%s is furious.',
  '%s is laughing.',
- '%s taunts you.']
+ '%s is taunting.',
+ '%s is raging.']
 EmoteFuncDict = {'Wave': 0,
  'Happy': 1,
  'Sad': 2,
@@ -329,7 +337,14 @@ EmoteFuncDict = {'Wave': 0,
  'Delighted': 22,
  'Furious': 23,
  'Laugh': 24,
- 'Taunt': 25}
+ 'Taunt': 25,
+ 'Rage': 26,
+ 'Greened': 27,
+ 'Melt': 28,
+ 'Cheer': 29,
+ 'Duck': 30,
+ 'Levitate': 31,
+ 'Teleport': 32}
 SuitBrushOffs = {'f': ["I'm late for a meeting."],
  'p': ['Push off.'],
  'ym': ['Yes Man says NO.'],
@@ -1258,6 +1273,11 @@ SpeedChatStaticTextToontown = {100: 'Hi!',
  10028: "On a scale of one to ten, how would you rate your pain?",
  10029: "I am programmed to assess everyone's health care needs.",
  10030: "Those that suffer a loss require support from friends and loved ones.",
+ 10031: "He'll come back... and I'll be waiting.",
+ 10032: "The jungle is no longer safe for you.",
+ 10033: "I will have you all in my teeth!",
+ 10034: "You have a metal arm? That is AWESOME, dude!",
+ 10035: "You have the right to remain silent!",
  20000: SuitBrushOffs[None][0],
  20001: SuitBrushOffs[None][1],
  20002: SuitBrushOffs[None][2],

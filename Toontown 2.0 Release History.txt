@@ -126,3 +126,28 @@ Donald's Dreamland, Goofy Speedway, Chip and Dale's Minigolf, Minnie's Melodylan
 
 2.0.1:
 1. Toontown Online GM Icons
+
+2.0.2:
+1. Toontown Online Soundtrack
+
+2.1.0:
+1. Fixed the Teleport Animation
+2. Fixed Sound Effect for Taunt Emotion
+3. Deadly VP
+4. Support in the XR Operating System for XR Epsilon Cogs
+5. New Speedchat Phrases for Famous Quotes Section
+6. New NPC, Kion
+7. New Kion SOS Card
+8. New Kion Cheesy Effect
+9. Toon Memory Game
+10. Fixed Bug with no music in Tug of War and Cannon Game
+
+2.1.1:
+1. Fixed Bug with no minigame model for background of Toon Memory Game
+
+2.1.2:
+1. Photo Fun
+
+2.2.0:
+1. New Emotions
+2. Deadly CFO

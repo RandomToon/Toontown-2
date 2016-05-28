@@ -96,7 +96,7 @@ class DistributedToon(DistributedPlayer.DistributedPlayer, Toon.Toon, Distribute
         self.disguisePage = None
         self.sosPage = None
         self.gardenPage = None
-        self.emoteAccess = [0] * 27
+        self.emoteAccess = [0] * 39
         self.cogTypes = [0, 0, 0, 0]
         self.cogLevels = [0, 0, 0, 0]
         self.cogParts = [0, 0, 0, 0]
@@ -179,6 +179,7 @@ class DistributedToon(DistributedPlayer.DistributedPlayer, Toon.Toon, Distribute
         self.reported = []
         self.trueFriends = []
         self.specialInventory = [0, 0, 0, 0, 0]
+        self.canUseUnites = True
 
     def disable(self):
         for soundSequence in self.soundSequenceList:
@@ -2549,6 +2550,12 @@ class DistributedToon(DistributedPlayer.DistributedPlayer, Toon.Toon, Distribute
     def wipeStats(self):
         self.sendUpdate('wipeStats')
 
+    def getCanUseUnites(self):
+        return self.canUseUnites
+ 
+    def setCanUseUnites(self, canUseUnites):
+        self.canUseUnites = canUseUnites
+ 
 @magicWord(category=CATEGORY_COMMUNITY_MANAGER)
 def globalTeleport():
     """

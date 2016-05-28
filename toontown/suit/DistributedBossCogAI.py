@@ -11,6 +11,7 @@ from toontown.battle import BattleBase
 from panda3d.core import *
 import SuitDNA
 import random
+import math
 AllBossCogs = []
 
 BOSS_TO_STAT = {
@@ -113,6 +114,9 @@ class DistributedBossCogAI(DistributedAvatarAI.DistributedAvatarAI):
         self.ignore(event)
         if not self.hasToons():
             taskMgr.doMethodLater(10, self.__bossDone, self.uniqueName('BossDone'))
+
+    def getBossDoneFunc(self):
+        return self.__bossDone
 
     def __bossDone(self, task):
         self.b_setState('Off')
@@ -467,8 +471,8 @@ class DistributedBossCogAI(DistributedAvatarAI.DistributedAvatarAI):
             self.b_setState(self.postBattleState)
         return
 
-    def invokeSuitPlanner(self, buildingCode, skelecog, skelecogRandom=0):
-        planner = SuitPlannerInteriorAI.SuitPlannerInteriorAI(1, buildingCode, self.dna.dept, self.zoneId)
+    def invokeSuitPlanner(self, buildingCode, skelecog, skelecogRandom=0, randomRevives=False):
+        planner = SuitPlannerInteriorAI.SuitPlannerInteriorAI(1, buildingCode, self.dna.dept, self.zoneId, randomRevives=randomRevives)
         planner.respectInvasions = 0
         suits = planner.genFloorSuits(0)
         if skelecog:
@@ -618,6 +622,19 @@ class DistributedBossCogAI(DistributedAvatarAI.DistributedAvatarAI):
     def doNextAttack(self, task):
         self.b_setAttackCode(ToontownGlobals.BossCogNoAttack)
     
+    def getToonDifficulty(self):
+        totalCogSuitTier = 0
+        totalToons = 0
+ 
+        for toonId in self.involvedToons:
+            toon = simbase.air.doId2do.get(toonId)
+            if toon:
+                totalToons += 1
+                totalCogSuitTier += toon.cogTypes[1]
+ 
+        averageTier = math.floor(totalCogSuitTier / totalToons) + 1
+        return int(averageTier)
+ 
     def giveKeyReward(self):
         if not self.keyReward:
             return

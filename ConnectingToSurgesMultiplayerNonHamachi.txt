@@ -2,8 +2,6 @@ Multiplayer Surge's Non-Hamachi Server
 
 1. Go To dev>win32
 2.Run start-game.bat
-3. Type 3 for Custom and Press Enter.
-4.Type in My IP:158.69.170.152
-5. Press enter Again
-6. Type in a username then press enter for the final time.
-7. Enjoy!
+3. Type 2 and Press Enter.
+4. Type in a username then press enter for the final time.
+5. Enjoy!

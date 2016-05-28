@@ -1769,7 +1769,7 @@ class Toon(Avatar.Avatar, ToonHead):
 
         holes = self.getHoleActors()
         hands = self.getRightHands()
-        holeTrack = Track((0.0, Func(showHoles, holes, hands)), (0.5, SoundInterval(self.getSoundTeleport(), node=self)), (1.708, Func(reparentHoles, holes, self)), (3.4, Func(cleanupHoles, holes)))
+        holeTrack = Track((0.0, Func(showHoles, holes, hands)), (0.5, SoundInterval(self.getSoundTeleport(), node=self)), (1.708, Func(reparentHoles, holes, self)), (2.9, Func(self.dropShadow.hide)), (3.4, Parallel(Func(self.nametag3d.hide), Func(cleanupHoles, holes))))
         if hasattr(self, 'uniqueName'):
             trackName = self.uniqueName('teleportOut')
         else:
@@ -1809,21 +1809,6 @@ class Toon(Avatar.Avatar, ToonHead):
         self.holeClipPath = self.attachNewNode(holeClip)
         self.getGeomNode().setClipPlane(self.holeClipPath)
         self.nametag3d.setClipPlane(self.holeClipPath)
-        avHeight = max(self.getHeight(), 3)
-        
-        if self == base.localAvatar and settings['tpTransition'] and not ZoneUtil.isDynamicZone(self.zoneId):
-            def lerpCam(task):
-                degrees = task.time * 52.941
-                radians = degrees * (math.pi / 180.0)
-                x = -12 * math.sin(radians)
-                y = -12 * math.cos(radians)
-                z = base.localAvatar.getHeight()
-                camera.setPos(x, y, z)
-                camera.setH(-degrees)
-                return task.done if task.time > 3.4 else task.cont
-            
-            taskMgr.add(lerpCam, 'lerpCam')
-
         self.track.start(ts)
         self.setActiveShadow(0)
 
@@ -2929,6 +2914,46 @@ class Toon(Avatar.Avatar, ToonHead):
         track.append(oldmanTrack)
         return track
 
+    def __doKion(self, lerpTime, toKion):
+        track = Sequence()
+        kionTrack = Parallel()
+
+        def getDustCloudIval():
+            dustCloud = DustCloud.DustCloud(fBillboard=0, wantSound=1)
+            dustCloud.setBillboardAxis(2.0)
+            dustCloud.setZ(3)
+            dustCloud.setScale(0.4)
+            dustCloud.createTrack()
+            return Sequence(Func(dustCloud.reparentTo, self), dustCloud.track, Func(dustCloud.destroy), name='dustCloadIval')
+
+        if lerpTime > 0.0:
+            dust = getDustCloudIval()
+            track.append(Func(dust.start))
+            track.append(Wait(0.5))
+            
+        if toKion:
+            self.oldStyle = self.style.clone()
+            self.oldHat = self.hat
+            dna = ToonDNA.ToonDNA()
+            dna.newToonFromProperties('cls', 'ms', 'l', 'm', 2, 0, 2, 2, 14, 9, 10, 9, 1, 14)
+            kionTrack.append(Func(self.updateToonDNA, dna, True))
+            if hasattr(self, 'animFSM'):
+                state = self.animFSM.getCurrentState()
+                kionTrack.append(Func(self.animFSM.request, 'off'))
+                kionTrack.append(Func(self.animFSM.request, state))
+            kionTrack.append(Func(self.nametag.setDisplayName, 'Kion'))
+        else:
+            kionTrack.append(Func(self.updateToonDNA, self.oldStyle))
+            if hasattr(self, 'animFSM'):
+                state = self.animFSM.getCurrentState()
+                kionTrack.append(Func(self.animFSM.request, 'off'))
+                kionTrack.append(Func(self.animFSM.request, state))
+            kionTrack.append(Func(self.nametag.setDisplayName, self.nametag.name))
+            kionTrack.append(Func(self.setHat, self.oldHat[0], self.oldHat[1], self.oldHat[2]))
+            kionTrack.append(Func(self.generateToonAccessories))
+        track.append(kionTrack)
+        return track
+
     def __doCheesyEffect(self, effect, lerpTime):
         if effect == ToontownGlobals.CEBigHead:
             return self.__doHeadScale(2.5, lerpTime)
@@ -2982,6 +3007,8 @@ class Toon(Avatar.Avatar, ToonHead):
             return self.__doTutorialTom(lerpTime, toTom=True)
         elif effect == ToontownGlobals.CEOldman:
             return self.__doLilOldman(lerpTime, toOldman=True)
+        elif effect == ToontownGlobals.CEKion:
+            return self.__doKion(lerpTime, toKion=True)
         elif effect == ToontownGlobals.CEVirtual:
             return self.__doVirtual()
         elif effect == ToontownGlobals.CEGhost:
@@ -3044,6 +3071,8 @@ class Toon(Avatar.Avatar, ToonHead):
             return self.__doTutorialTom(lerpTime, toTom=False)
         elif effect == ToontownGlobals.CEOldman:
             return self.__doLilOldman(lerpTime, toOldman=False)
+        elif effect == ToontownGlobals.CEKion:
+            return self.__doKion(lerpTime, toKion=False)
         elif effect == ToontownGlobals.CEVirtual:
             return self.__doUnVirtual()
         elif effect == ToontownGlobals.CEGhost:

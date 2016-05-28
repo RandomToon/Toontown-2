@@ -39,7 +39,12 @@ scStructure = [
   10027,
   10028,
   10029,
-  10030],
+  10030,
+  10031,
+  10032,
+  10033,
+  10034,
+  10035],
  [OTPLocalizer.SCMenuHello,
   {100: 0},
   {101: 0},
@@ -517,7 +522,8 @@ class TTChatInputSpeedChat(DirectObject.DirectObject):
             self.chatMgr.sendSCToontaskWhisperMessage(taskId, toNpcId, toonProgress, msgIndex, self.whisperAvatarId)
 
     def handleResistanceMsg(self, textId):
-        self.chatMgr.sendSCResistanceChatMessage(textId)
+        if base.localAvatar.getCanUseUnites():
+            self.chatMgr.sendSCResistanceChatMessage(textId)
 
     def handleSpeedChatStyleChange(self):
         nameKey, arrowColor, rolloverColor, frameColor = speedChatStyles[base.localAvatar.getSpeedChatStyleIndex()]

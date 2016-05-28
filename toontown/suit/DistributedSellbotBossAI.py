@@ -395,12 +395,16 @@ class DistributedSellbotBossAI(DistributedBossCogAI.DistributedBossCogAI, FSM.FS
     def enterReward(self):
         DistributedBossCogAI.DistributedBossCogAI.enterReward(self)
 
-def getVP(invoker):
-    for do in simbase.air.doId2do.values():
-        if isinstance(do, DistributedSellbotBossAI):
-            if invoker.doId in do.involvedToons:
-                return do
-
+    def hasToonTouchedCage(self, toon):
+        return toon.__touchedCage
+ 
+    def setToonTouchedCage(self, toon):
+        toon.__touchedCage = 1
+ 
+    def toonDidGoodJump(self, avId):
+        self.__goodJump(avId)
+ 
+ 
 @magicWord(category=CATEGORY_ADMINISTRATOR)
 def secondVP():
     """
