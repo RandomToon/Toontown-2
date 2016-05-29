@@ -151,3 +151,6 @@ Donald's Dreamland, Goofy Speedway, Chip and Dale's Minigolf, Minnie's Melodylan
 2.2.0:
 1. New Emotions
 2. Deadly CFO
+
+2.2.1:
+1. Increased Carry Limit for Level 7 Gags to 10
